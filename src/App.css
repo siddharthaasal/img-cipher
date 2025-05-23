@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
+
+.unica-one-regular {
+    font-family: "Unica One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.caption-style {
+    font-family: 'JetBrains Mono', monospace;
+    font-style: italic;
+}
+
+body {
+    background-color: #FAFBF9;
+}
