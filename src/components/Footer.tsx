@@ -23,7 +23,7 @@ export default function Footer() {
                 </a>
 
                 <a
-                    href="https://github.com/your-repo"
+                    href="https://github.com/siddharthaasal/img-cipher"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-1.5 cursor-pointer hover:text-gray-400 transition-colors"
@@ -33,7 +33,7 @@ export default function Footer() {
                 </a>
 
                 <a
-                    href="/contact"
+                    href="mailto:siddharthaasal.@gmail.com"
                     className="flex items-center gap-1.5 cursor-pointer hover:text-gray-400 transition-colors"
                 >
                     <MailIcon fontSize="small" />
