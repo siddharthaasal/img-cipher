@@ -2,15 +2,15 @@
 
 <div align="center">
 <pre>
-██╗███╗   ███╗ ██████╗ ███████╗ ██████╗ ██████╗ ████████╗
-██║████╗ ████║██╔════╝ ██╔════╝██╔═══██╗██╔══██╗╚══██╔══╝
-██║██╔████╔██║██║  ███╗███████╗██║   ██║██████╔╝   ██║   
-██║██║╚██╔╝██║██║   ██║╚════██║██║   ██║██╔══██╗   ██║   
-██║██║ ╚═╝ ██║╚██████╔╝███████║╚██████╔╝██║  ██║   ██║   
-╚═╝╚═╝     ╚═╝ ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝   
+██ ███    ███  ██████         ██████ ██ ██████  ██   ██ ███████ ██████  
+██ ████  ████ ██             ██      ██ ██   ██ ██   ██ ██      ██   ██ 
+██ ██ ████ ██ ██   ███ █████ ██      ██ ██████  ███████ █████   ██████  
+██ ██  ██  ██ ██    ██       ██      ██ ██      ██   ██ ██      ██   ██ 
+██ ██      ██  ██████         ██████ ██ ██      ██   ██ ███████ ██   ██  
 -------------------------------------------------
 img-cipher: Secure Image Encryption & Decryption in the Browser
 </pre>
+
 
 [![React](https://img.shields.io/badge/React-blue)](https://reactjs.org/)
 [![Material-UI](https://img.shields.io/badge/Material--UI-green)](https://mui.com/)
@@ -36,7 +36,7 @@ img-cipher: Secure Image Encryption & Decryption in the Browser
 Clone the repository and install dependencies:
 
 ```sh
-git clone https://github.com/your-username/img-cipher.git
+git clone https://github.com/siddharthaasal/img-cipher.git
 cd img-cipher
 npm install
 ```
