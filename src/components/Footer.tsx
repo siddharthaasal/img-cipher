@@ -1,6 +1,7 @@
 import GitHubIcon from '@mui/icons-material/GitHub';
 import ArticleIcon from '@mui/icons-material/Article';
 import MailIcon from '@mui/icons-material/Mail';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
     return (
@@ -14,13 +15,13 @@ export default function Footer() {
                 ">
             {/* Top Group: Links */}
             <div className="flex flex-wrap justify-center gap-7 mb-2 md:mb-0">
-                <a
-                    href="/instructions"
+                <Link
+                    to="/instructions"
                     className="flex items-center gap-1.5 cursor-pointer hover:text-gray-400 transition-colors"
                 >
                     <ArticleIcon fontSize="small" />
                     instructions
-                </a>
+                </Link>
 
                 <a
                     href="https://github.com/siddharthaasal/img-cipher"
