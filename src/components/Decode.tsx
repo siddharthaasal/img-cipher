@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import CryptoJS from "crypto-js";
 import { Toaster, toast } from 'sonner';
+import { Link } from "react-router-dom";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -206,9 +207,9 @@ const Decode = () => {
 
                 <p className="text-sm text-gray-500 mt-4 text-center">
                     Want to{" "}
-                    <a href="/encode" className="text-blue-600 hover:underline">
+                    <Link to="/encode" className="text-blue-600 hover:underline">
                         encode a file
-                    </a>{" "}
+                    </Link>{" "}
                     instead?
                 </p>
             </div>

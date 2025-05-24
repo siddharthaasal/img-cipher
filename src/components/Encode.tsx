@@ -4,6 +4,7 @@ import { Toaster, toast } from 'sonner';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import { Link } from "react-router-dom";
 
 
 const Encode = () => {
@@ -186,9 +187,9 @@ const Encode = () => {
 
                 <p className="text-sm text-gray-500 mt-4 text-center">
                     Want to{" "}
-                    <a href="/decode" className="text-blue-600 hover:underline">
+                    <Link to="/decode" className="text-blue-600 hover:underline">
                         decode a file
-                    </a>{" "}
+                    </Link>{" "}
                     instead?
                 </p>
             </div>
