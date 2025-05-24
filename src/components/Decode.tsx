@@ -117,7 +117,7 @@ const Decode = () => {
                 >
                     <input
                         type="file"
-                        accept="text/.txt"
+                        accept=".txt, text/.txt"
                         ref={inputRef}
                         onChange={handleFileChange}
                         className="hidden"
