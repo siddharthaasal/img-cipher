@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import CryptoJS from "crypto-js";
+import { Toaster, toast } from 'sonner';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -26,39 +27,49 @@ const Decode = () => {
     const handleConvertAndDownload = () => {
         if (!file) return;
 
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            let fileContent = reader.result?.toString();
-            if (!fileContent) return;
+        const convertPromise = new Promise((resolve, reject) => {
+            const reader = new FileReader();
 
-            // Decrypt if necessary
-            if (toDecrypt) {
-                if (!password) {
-                    alert("Please enter a password to decrypt!");
-                    return;
+            reader.onloadend = () => {
+                let fileContent = reader.result?.toString();
+                if (!fileContent) return reject("Empty or unreadable file");
+
+                try {
+                    // Decrypt if needed
+                    if (toDecrypt) {
+                        if (!password) return reject("Please enter a password to decrypt!");
+                        const decrypted = decryptText(fileContent, password);
+                        if (!decrypted) return reject("Decryption failed. Wrong password or corrupted file.");
+                        fileContent = decrypted;
+                    }
+
+                    // Convert base64 back to binary
+                    const byteCharacters = atob(fileContent);
+                    const byteNumbers = Array.from(byteCharacters, char => char.charCodeAt(0));
+                    const byteArray = new Uint8Array(byteNumbers);
+
+                    const blob = new Blob([byteArray], { type: "image/*" });
+
+                    const link = document.createElement("a");
+                    link.href = URL.createObjectURL(blob);
+                    link.download = `${baseName}_decoded.png`;
+                    link.click();
+
+                    resolve(file.name);
+                } catch (err) {
+                    reject("Unexpected error occurred");
                 }
-                fileContent = decryptText(fileContent, password) || "";
-                if (!fileContent) {
-                    alert("Decryption failed. Wrong password or corrupted file.");
-                    return;
-                }
-            }
+            };
 
-            // Convert base64 back to binary
-            const byteCharacters = atob(fileContent);
-            const byteNumbers = Array.from(byteCharacters, char => char.charCodeAt(0));
-            const byteArray = new Uint8Array(byteNumbers);
+            reader.onerror = () => reject("Failed to read the file");
+            reader.readAsText(file);
+        });
 
-            // Create a blob (fallback to generic image type)
-            const blob = new Blob([byteArray], { type: "image/*" });
-
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = `${baseName}_decoded.png`;
-            link.click();
-        };
-
-        reader.readAsText(file);
+        toast.promise(convertPromise, {
+            loading: "Decoding file...",
+            success: () => `Successfully decoded`,
+            error: (err) => `Error: ${err}`,
+        });
     };
 
 
@@ -84,6 +95,10 @@ const Decode = () => {
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-white  space-y-6 pb-16">
+            <Toaster position="bottom-right" />
+            <h1 className="text-2xl font-semibold text-gray-800 flex ">Decode an Image</h1>
+            {/* <p className="text-xs text-gray-500 mb-2">Upload a base64 `.txt` file to convert it back to an image.</p> */}
+
             <div
                 onClick={() => inputRef.current?.click()}
                 className="cursor-pointer w-full max-w-sm border-2 border-dashed border-gray-300 rounded-xl p-6 hover:border-gray-400 transition"

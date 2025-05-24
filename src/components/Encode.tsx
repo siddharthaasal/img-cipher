@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import CryptoJS from "crypto-js";
+import { Toaster, toast } from 'sonner';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -26,26 +27,46 @@ const Encode = () => {
     const handleConvertAndDownload = () => {
         if (!file) return;
 
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            let base64String = reader.result?.toString().split(",")[1];
-            if (base64String) {
-                if (toEncrypt) {
-                    if (!password) {
-                        alert("Please enter a password to encrypt!");
-                        return;
+        const convertPromise = new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                try {
+                    let base64String = reader.result?.toString().split(",")[1];
+                    if (base64String) {
+                        if (toEncrypt) {
+                            if (!password) {
+                                alert("Please enter a password to encrypt!");
+                                return;
+                            }
+                            base64String = encryptText(base64String, password);
+                        }
+
+                        const blob = new Blob([base64String], { type: "text/plain" });
+                        const link = document.createElement("a");
+                        link.href = URL.createObjectURL(blob);
+                        link.download = `${baseName}.txt`;
+                        link.click();
+
+                        resolve({ name: file.name });
                     }
-                    base64String = encryptText(base64String, password);
+                } catch (err) {
+                    reject("Unexpected Error occured");
                 }
 
-                const blob = new Blob([base64String], { type: "text/plain" });
-                const link = document.createElement("a");
-                link.href = URL.createObjectURL(blob);
-                link.download = `${baseName}.txt`;
-                link.click();
-            }
-        };
-        reader.readAsDataURL(file);
+            };
+
+            reader.onerror = () => reject("Failed to read file");
+
+            reader.readAsDataURL(file);
+        });
+
+        toast.promise(convertPromise, {
+            loading: "Encoding image...",
+            success: () => `Image converted and downloaded`,
+            error: (err) => `Error: ${err}`
+        })
+
+
     };
 
 
@@ -63,6 +84,9 @@ const Encode = () => {
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-white pb-16 space-y-6">
+            <Toaster position="bottom-right" />
+            <h1 className="text-2xl font-semibold text-gray-800 flex ">Encode an Image</h1>
+
             <div
                 onClick={() => inputRef.current?.click()}
                 className="cursor-pointer w-full max-w-sm border-2 border-dashed border-gray-300 rounded-xl p-6 hover:border-gray-400 transition"
