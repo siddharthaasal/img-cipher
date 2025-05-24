@@ -95,20 +95,24 @@ const Decode = () => {
 
     return (
         <>
-            <div className="fixed top-4 left-6 z-50">
-                <a href="/" className="text-xl md:text-2xl underline font-bold unica-one-regular text-gray-800 hover:opacity-90 transition">
+            <div className="fixed top-4 left-4 z-50">
+                <a
+                    href="/"
+                    className="text-lg sm:text-xl md:text-2xl underline font-bold unica-one-regular text-gray-800 hover:opacity-90 transition"
+                >
                     img.cipher
                 </a>
             </div>
 
-            <div className="min-h-screen flex flex-col items-center justify-center   space-y-6 pb-16">
+            <div className="min-h-screen flex flex-col items-center justify-center space-y-6 pb-16 px-4">
                 <Toaster position="bottom-right" />
-                <h1 className="text-2xl font-semibold text-gray-800 flex ">Decode an Image</h1>
-                {/* <p className="text-xs text-gray-500 mb-2">Upload a base64 `.txt` file to convert it back to an image.</p> */}
+                <h1 className="text-xl sm:text-2xl font-semibold text-gray-800 text-center">
+                    Decode an Image
+                </h1>
 
                 <div
                     onClick={() => inputRef.current?.click()}
-                    className="cursor-pointer w-full max-w-sm border-2 border-dashed border-gray-300 rounded-xl p-6 hover:border-gray-400 transition"
+                    className="cursor-pointer w-full max-w-sm border-2 border-dashed border-gray-300 rounded-xl p-5 sm:p-6 hover:border-gray-400 transition"
                 >
                     <input
                         type="file"
@@ -121,7 +125,7 @@ const Decode = () => {
                     {!file ? (
                         <div className="flex flex-col items-center justify-center text-gray-500 text-center">
                             <FileUploadIcon className="w-6 h-6 mb-2" />
-                            <p className="text-sm">Click to upload your Base64 text file</p>
+                            <p className="text-sm sm:text-base">Click to upload your Base64 text file</p>
                             <p className="text-xs text-gray-400 mt-1">TXT</p>
                         </div>
                     ) : (
@@ -142,7 +146,9 @@ const Decode = () => {
                                     onClick={(e) => e.stopPropagation()}
                                     onChange={(e) => setBaseName(e.target.value)}
                                 />
-                                <span className="text-sm text-gray-500 select-none">_decoded.png</span>
+                                <span className="text-sm text-gray-500 select-none">
+                                    _decoded.png
+                                </span>
                             </div>
                         </div>
                     )}
@@ -151,7 +157,10 @@ const Decode = () => {
                 {file && (
                     <>
                         <div className="w-full max-w-sm flex flex-col mb-2">
-                            <label htmlFor="encrypt-toggle" className="text-sm text-gray-700 mb-1">
+                            <label
+                                htmlFor="encrypt-toggle"
+                                className="text-sm text-gray-700 mb-1"
+                            >
                                 <input
                                     type="checkbox"
                                     id="encrypt-toggle"
@@ -159,46 +168,53 @@ const Decode = () => {
                                     onChange={toggleToDecrypt}
                                     className="mr-2 accent-gray-500"
                                 />
-                                Decrypt with password <span className="text-gray-500">(Password protected file)</span>
+                                Decrypt with password{" "}
+                                <span className="text-gray-500">(Password protected file)</span>
                             </label>
                         </div>
 
-                        {
-                            toDecrypt && (
-                                <div className="mb-4 w-full max-w-sm relative">
-                                    <input
-                                        type={showPassoword ? "text" : "password"}
-                                        placeholder="Enter password"
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        className="w-full items-start border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-700"
-                                    />
-                                    <div
-                                        onClick={toggleShowPassword}
-                                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 cursor-pointer"
-                                    >
-                                        {showPassoword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                                    </div>
+                        {toDecrypt && (
+                            <div className="mb-4 w-full max-w-sm relative">
+                                <input
+                                    type={showPassoword ? "text" : "password"}
+                                    placeholder="Enter password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    className="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-700"
+                                />
+                                <div
+                                    onClick={toggleShowPassword}
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 cursor-pointer"
+                                >
+                                    {showPassoword ? (
+                                        <VisibilityIcon />
+                                    ) : (
+                                        <VisibilityOffIcon />
+                                    )}
                                 </div>
-                            )
-                        }
+                            </div>
+                        )}
+
                         <button
                             onClick={handleConvertAndDownload}
-                            className="w-full max-w-sm px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition"
+                            className="w-full max-w-sm px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition text-sm"
                         >
                             Convert & Download
                         </button>
                     </>
-
                 )}
-                <p className="text-sm text-gray-500 mt-4 text-center">
-                    Want to <a href="/encode" className="text-blue-600 hover:underline">encode a file</a> instead?
-                </p>
 
+                <p className="text-sm text-gray-500 mt-4 text-center">
+                    Want to{" "}
+                    <a href="/encode" className="text-blue-600 hover:underline">
+                        encode a file
+                    </a>{" "}
+                    instead?
+                </p>
             </div>
         </>
-
     );
+
 };
 
 export default Decode;
