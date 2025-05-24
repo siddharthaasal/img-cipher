@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 export default function Home() {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center text-center pb-16 px-4">
-            <h1 className="text-3xl sm:text-4xl unica-one-regular mb-2">
+            <a
+                href="/"
+                className="text-3xl sm:text-4xl unica-one-regular mb-2">
+
                 /img.cipher/
-            </h1>
+            </a>
             <h4 className="caption-style text-sm sm:text-base italic text-gray-600 mb-6">
                 just a little something to keep your pics private
             </h4>
