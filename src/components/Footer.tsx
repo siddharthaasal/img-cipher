@@ -43,7 +43,7 @@ export default function Footer() {
 
             {/* Bottom Group: Version & Copyright */}
             <div className="flex flex-col md:flex-row justify-center items-center gap-4 text-center">
-                <div className="hidden sm:inline">© 2025 Siddharth Aasal</div>
+                <div className=" sm:inline">© 2025 Siddharth Aasal</div>
                 {/* <div className="flex items-center gap-1">v1.0.0</div> */}
             </div>
         </footer>

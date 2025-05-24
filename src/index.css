@@ -1,3 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@1,400&display=swap');
 @import "tailwindcss";
+
+body {
+    background-color: #FAFBF9;
+}
