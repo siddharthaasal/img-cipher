@@ -20,16 +20,28 @@ img-cipher: Secure Image Encryption & Decryption in the Browser
 
 ## Overview
 
-`img-cipher` is a lightweight React application for **client-side image encryption and decryption**. It allows users to securely encode images with a password and decode them later, protecting sensitive images without needing backend processing.
+**`img-cipher`** is a lightweight, client-side web app built with **React** for securely **encrypting** and **decrypting images** directly in your browser. It uses modern cryptographic methods and works entirely offline — no servers, no tracking, no image uploads.
 
 ## Features
 
-* Encrypt images directly in the browser
-* Decrypt encrypted images with the correct password
-* Responsive UI built with React and Material-UI icons
-* Client-side only — no data leaves your device
-* Easy-to-use, minimalistic interface
-* Open source and MIT licensed
+- 🔐 **AES-256 encryption** to securely encode image data
+- 🔁 **Base64 encoding** to represent binary data as safe text
+- 🧠 **Client-side only** — your images and passwords never leave your device
+- 📱 **Responsive design** for seamless use on desktop and mobile
+- 🧩 Simple, minimal UI with Material UI icons
+- 🧾 **Password-protected encryption** with optional decryption toggle
+- 🛠️ **No backend or cloud storage required**
+- ✅ **Open source** under the MIT License
+
+
+## 🧪 How It Works
+
+- **Encoding:**  
+  The image is read as binary, converted to Base64 text, then encrypted using **AES** (via `crypto-js`). The encrypted text can be saved as a `.txt` file.
+
+- **Decoding:**  
+  A `.txt` file is decrypted using the provided password, decoded from Base64, and converted back into the original image.
+
 
 ## Installation & Setup
 
