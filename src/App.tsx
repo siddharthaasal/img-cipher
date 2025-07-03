@@ -5,7 +5,6 @@ import Home from './components/Home';
 import Encode from './components/Encode';
 import Decode from './components/Decode';
 import Footer from './components/Footer';
-import Instructions from './components/Instructions';
 
 function App() {
   return (
@@ -16,7 +15,6 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/encode" element={<Encode />} />
             <Route path="/decode" element={<Decode />} />
-            <Route path="/instructions" element={<Instructions />} />
           </Routes>
         </main>
         <Footer />

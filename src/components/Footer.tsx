@@ -1,9 +1,13 @@
 import GitHubIcon from '@mui/icons-material/GitHub';
 import ArticleIcon from '@mui/icons-material/Article';
 import MailIcon from '@mui/icons-material/Mail';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import Instructions from "./Instructions";
 
 export default function Footer() {
+
+    const [showInstructions, setShowInstructions] = useState<boolean>(false);
+
     return (
         <footer className="fixed bottom-2 left-2 right-2 text-xs text-gray-600 font-mono select-none           
                 flex flex-col md:flex-col justify-center items-center
@@ -15,13 +19,14 @@ export default function Footer() {
                 ">
             {/* Top Group: Links */}
             <div className="flex flex-wrap justify-center gap-7 mb-2 md:mb-0">
-                <Link
-                    to="/instructions"
+                <div
                     className="flex items-center gap-1.5 cursor-pointer hover:text-gray-400 transition-colors"
+                    onClick={() => setShowInstructions(true)}
                 >
+
                     <ArticleIcon fontSize="small" />
                     instructions
-                </Link>
+                </div>
 
                 <a
                     href="https://github.com/siddharthaasal/img-cipher"
@@ -47,6 +52,11 @@ export default function Footer() {
                 <div className=" sm:inline">© 2025 Siddharth Aasal</div>
                 {/* <div className="flex items-center gap-1">v1.0.0</div> */}
             </div>
+
+            {
+                showInstructions &&
+                <Instructions onClose={() => setShowInstructions(false)} />
+            }
         </footer>
     );
 }
